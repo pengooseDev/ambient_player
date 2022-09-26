@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+#AmbientPlayer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Concept1
+- 선화를 이용한 PNG 파일을 이용해 ThemeToggle 기능 사용.
 
-## Available Scripts
+1. 호그와트 느낌나는 중세 벽돌 도서관.
 
-In the project directory, you can run:
+```tsx
+const Lantern = styled.div<{isOn: boolean}>`
+filter: ${(props)=>props.isOn ? saturate(3) : null};
+`
 
-### `npm start`
+import {useRecoilState} from "recoil";
+import {isOnAtom} from "./atom";
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+const LanternComponent = () => {
+const [isOn, setIsOn] = useRecoilState(isOnAtom);
+    return <Lantern toggle={isOn} onClick={toggleHandler} />;
+}
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  
 
-### `npm test`
+Lantern의 ToggleBtn은 onClick일때 콜백함수로 toggleHandler가 사용됨.
+toggleHandler은 아래의 특징을 가짐.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```tsx
+const toggleHandler = () => {
+// setIsOn((prev) => !prev);
+// soundPlayer() // audio tag는 Promise함수임을 인지하고, 여러 Ambient를 사용할 경우 핸들링 레이턴시 최소화. 경우에 따라 Promise.all()사용.
+}
 
-### `npm run build`
+```
+ToggleBtn은 단순히 <Button />으로 구현하는 것이 아니라,
+label을 이용한 커스텀 Component를 사용하거나 Img || PNG 파일을 이용해 조금 더 직관적이게 커스텀.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Components 별로 여러가지 Ambient제공.
+- Data 크롤링은 유튜브, freeSound
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ThemeToggle ? <Working/> : <Pause/>
