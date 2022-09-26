@@ -1,20 +1,20 @@
-#AmbientPlayer
+# AmbientPlayer
 
-# Concept1
+### Concept1
 - 선화를 이용한 PNG 파일을 이용해 ThemeToggle 기능 사용.
 
 1. 호그와트 느낌나는 중세 벽돌 도서관.
 
 ```tsx
-const Lantern = styled.div<{isOn: boolean}>`
-filter: ${(props)=>props.isOn ? saturate(3) : null};
-`
-
 import {useRecoilState} from "recoil";
 import {isOnAtom} from "./atom";
 
+const Lantern = styled.div<{isOn: boolean}>`
+    filter: ${(props)=>props.isOn ? saturate(3) : null};
+`
+
 const LanternComponent = () => {
-const [isOn, setIsOn] = useRecoilState(isOnAtom);
+    const [isOn, setIsOn] = useRecoilState(isOnAtom);
     return <Lantern toggle={isOn} onClick={toggleHandler} />;
 }
 ```
