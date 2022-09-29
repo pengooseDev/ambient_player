@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Libarary from "./Components/Libarary";
+import Nav from "./Components/Nav";
 
 const App = () => {
     return (
         <BrowserRouter>
+            <Nav />
             <Routes>
                 <Route path="/" element={<Libarary />}></Route>
                 <Route></Route>
