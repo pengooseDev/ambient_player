@@ -1,10 +1,10 @@
 # AmbientPlayer
 
-[ Skills ]
-DevEnv : React, TypeScript  
-State : Recoil  
-Style : styled-components, Framer-motion  
-SoundHook : [useSound](https://www.npmjs.com/package/react-sound)
+[ Skills ]  
+**DevEnv : React, TypeScript **
+**State : Recoil **
+**Style : styled-components, Framer-motion **
+**SoundHook : [useSound](https://www.npmjs.com/package/react-sound)**
 
 SoundDesign : FL-Studio, Kontakt plugins
 
