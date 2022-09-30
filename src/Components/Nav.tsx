@@ -1,35 +1,23 @@
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-
-/* RouteIMG */
-import lib1IMG from "../assets/AmbientImg/Library1/01.webp";
-import televisorIMG from "../assets/AmbientImg/TeleVisor/teleVisor.webp";
-import Latelier1IMG from "../assets/AmbientImg/L'atelier of the Memory/01.webp";
-import Orchestration1IMG from "../assets/AmbientImg/Orchestration/01.webp";
+import { motion } from "framer-motion";
+import routeData from "../routeData";
+import { useState, useEffect } from "react";
 
 interface ILinkProps {
   img: string;
 }
 
-const pathData = [
-  { name: "Library", path: "/", img: lib1IMG },
-  { name: "Televisor", path: "a", img: televisorIMG },
-  { name: "L'atelier of the Memory", path: "b", img: Latelier1IMG },
-  { name: "End of the Symphony", path: "c", img: Orchestration1IMG },
-];
+//dummyData 생성 후, 한 번에 4개의 Route Render. FramerMotion 사용해서 왔다갔다.
 
 const Wrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  width: 100vw;
   background: rgba(0, 0, 0, 0.1);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  padding: 10px;
-  height: 200px;
-  color: white;
 `;
 
-const LinkBox = styled.div<ILinkProps>`
+const LinkBox = styled(motion.div)<ILinkProps>`
   background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),
     url(${(props) => props.img});
   background-size: cover;
@@ -42,14 +30,56 @@ const LinkBox = styled.div<ILinkProps>`
   color: white;
 `;
 
+const Slider = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+  height: 200px;
+  color: white;
+`;
+
+const AfterBtn = styled.input.attrs({ type: "button" })`
+  width: 20px;
+  height: 100%;
+  right: 0px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: none;
+  position: absolute;
+`;
+
+const BeforeBtn = styled.input.attrs({ type: "button" })`
+  width: 20px;
+  height: 100%;
+  left: 0px;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  border: none;
+  position: absolute;
+`;
+
 const Nav = () => {
+  const [slideIndex, setSlideIndex] = useState(1);
+  const afterHandler = () => {
+    setSlideIndex((prev) => {
+      if (routeData.length / 4 >= prev) {
+        return (prev += 1);
+      }
+      return 1;
+    });
+  };
   return (
     <Wrapper>
-      {pathData.map((i) => (
-        <Link to={i.path}>
-          <LinkBox img={i.img}>{i.name}</LinkBox>
-        </Link>
-      ))}
+      <Slider>
+        {routeData.slice(4 * (slideIndex - 1), 4 * slideIndex).map((i) => (
+          <Link to={i.path}>
+            <LinkBox img={i.img}>{i.name}</LinkBox>
+          </Link>
+        ))}
+        <AfterBtn onClick={afterHandler} />
+      </Slider>
     </Wrapper>
   );
 };
