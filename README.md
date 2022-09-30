@@ -14,6 +14,12 @@ SoundDesign : FL-Studio, Kontakt plugins
 
 ### ToDo
 
-1. Route를 이동할 수 있는 Navbar는 `Framer-motion`을 이용해서 4개씩 보여주고, 페이지 넘기는 식으로 하면 괜찮을듯?
+1. 사운드 레이어 분리해서 User가 각 사운드 Volume 핸들링 기능 추가.
 
-2. 사운드 레이어 분리해서 User가 각 사운드 Volume 핸들링 할 수 있게?
+2. 다른 Route로 이동할 때, 이전 page에서 재생되던 sound 계속 재생됨. page 이동할 때, 이전 Sound 재생 멈추기 추가. (다른 페이지 갔다가 다시 돌아와서 재생하면 여러번 재생됨.)
+
+3. LinkBox Hover 상태일 때 효과음 추가.
+
+4. Sound Design 토요일에 노가다 끝내고, SoundComponent에 전부 추가.
+
+5. !!!!!! 작업 전에, SoundComponent에 전달해줘야하는 Props 더 생각해보기. (coverImg랑 제목도 전달해줘야함.)

@@ -17,7 +17,7 @@ const Wrapper = styled.div<{ visible: boolean }>`
   top: ${(props) => (props.visible ? "0px" : "-170px")};
   transition: ease-in-out 0.2s;
   width: 100vw;
-  background: rgba(255, 255, 255, 0.65);
+  background: #9f9f9f;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
 `;
 
@@ -27,7 +27,7 @@ const ToggleBtn = styled.div`
   width: 100px;
   height: 25px;
   border-radius: 0px 0px 5px 5px;
-  background: rgba(255, 255, 255, 0.65);
+  background: #9f9f9f;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
   :hover {
     cursor: pointer;
@@ -44,7 +44,7 @@ const Slider = styled.div`
   color: white;
 `;
 
-const LinkBox = styled(motion.div)<ILinkProps>`
+const LinkBox = styled.div<ILinkProps>`
   background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1)),
     url(${(props) => props.img});
   background-size: cover;
@@ -56,6 +56,13 @@ const LinkBox = styled(motion.div)<ILinkProps>`
   font-weight: 600;
   text-align: center;
   color: white;
+  transition: ease-in-out 0.2s;
+
+  :hover {
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
+      url(${(props) => props.img});
+    background-size: cover;
+  }
 `;
 
 const AfterBtn = styled.input.attrs({ type: "button" })`
@@ -65,11 +72,14 @@ const AfterBtn = styled.input.attrs({ type: "button" })`
   width: 20px;
   height: 100%;
   right: 0px;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
   position: absolute;
+  transition: ease-in-out 0.2s;
+  font-weight: 600;
   :hover {
+    background: rgba(0, 0, 0, 0.7);
     cursor: pointer;
   }
 `;
