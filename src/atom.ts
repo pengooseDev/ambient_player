@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-const newAtom = atom({
-  key: "newAtom",
-  default: [],
+export const navToggleAtom = atom({
+  key: "navToggle",
+  default: false,
 });
