@@ -1,5 +1,5 @@
 const Libarary = () => {
-    return <>Libarary</>;
+  return <>Libarary</>;
 };
 
 export default Libarary;

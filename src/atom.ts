@@ -1,6 +1,6 @@
-import {atom} from "recoil";
+import { atom } from "recoil";
 
 const newAtom = atom({
-    key:"newAtom",
-    default:[]
-})
+  key: "newAtom",
+  default: [],
+});
