@@ -6,6 +6,7 @@ import Orchestration1IMG from "./assets/AmbientImg/Orchestration/01.webp";
 
 /* Sound SFX */
 import LibSFX from "./assets/AmbientSound/Library1.mp3";
+import LatelierSFX from "./assets/AmbientSound/L'atelier of the Memory.mp3";
 
 export interface IRouteData {
     name: string;
@@ -20,9 +21,9 @@ const routeData = [
     { name: "Televisor", path: "a", img: televisorIMG, sound: LibSFX },
     {
         name: "L'atelier of the Memory",
-        path: "b",
+        path: "latelier",
         img: Latelier1IMG,
-        sound: LibSFX,
+        sound: LatelierSFX,
     },
     {
         name: "End of the Symphony",

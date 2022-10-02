@@ -55,32 +55,36 @@ const PlayBtn = styled.div<{ avgColor: string }>`
     }
 `;
 
-const Title = styled.div`
-    font-size: 30px;
-    font-weight: 600;
-`;
+const Audio = (sound: string) => {
+    const audio = new Audio(sound);
+    return <></>;
+};
 
 const Sound = ({ name, path, img, sound }: IRouteData) => {
     const [isVisible, setVisible] = useRecoilState(navToggleAtom);
     const [isPlaying, setIsPlaying] = useState<boolean>(true);
     const [avgColor, setAvgColor] = useState<string>("");
-    const [play, { stop }] = useSound(sound);
+
+    console.log(sound);
 
     const soundHandler = () => {
         setIsPlaying((prev) => !prev);
+        console.log("isplaying?", isPlaying);
         if (isPlaying) {
-            play();
+            audio.pause();
+            audio.play();
         } else {
-            stop();
+            //기존에 재생되던 애 멈춰야함.
+            audio.pause();
         }
     };
 
-    /* Generate Avg of the Img Color */
     useEffect(() => {
+        const audio = new Audio(sound);
+
+        /* Generate Color */
         const fac = new FastAverageColor();
         fac.getColorAsync(img, { algorithm: "sqrt" }).then((i) => {
-            console.log(i);
-
             setAvgColor((prev) => i.hex);
         });
     }, [path]);
@@ -93,7 +97,6 @@ const Sound = ({ name, path, img, sound }: IRouteData) => {
 
     return (
         <Wrapper onClick={navCloseHandler} imgUrl={img}>
-            {/*<Title>{name}</Title>*/}
             <ImgContainer
                 onClick={soundHandler}
                 imgUrl={img}
