@@ -5,7 +5,7 @@ import routeData from "./routeData";
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Nav />
             <Routes>
                 {routeData.map(({ name, path, img, sound }, i) => {

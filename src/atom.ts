@@ -9,3 +9,8 @@ export const playerAtom = atom({
     key: "playerAtom",
     default: true,
 });
+
+export const colorAtom = atom({
+    key: "colorAtom",
+    default: "",
+});

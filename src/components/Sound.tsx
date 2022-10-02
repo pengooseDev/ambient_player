@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { navToggleAtom, playerAtom } from "../atom";
+import { navToggleAtom, playerAtom, colorAtom } from "../atom";
 import styled from "styled-components";
 import { IRouteData } from "../routeData";
 import { FastAverageColor } from "fast-average-color";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 const Wrapper = styled.div<{ imgUrl: string }>`
     display: flex;
@@ -53,11 +53,10 @@ const PlayBtn = styled.div<{ avgColor: string }>`
 const Sound = ({ name, path, img, sound }: IRouteData) => {
     const [isVisible, setVisible] = useRecoilState(navToggleAtom);
     const [isPlaying, setIsPlaying] = useRecoilState<boolean>(playerAtom);
-    const [avgColor, setAvgColor] = useState<string>("");
+    const [avgColor, setAvgColor] = useRecoilState<string>(colorAtom);
 
     const soundHandler = () => {
         setIsPlaying((prev) => !prev);
-        console.log("isplaying?", isPlaying);
         if (isPlaying) {
             audio?.play();
         } else {
@@ -78,10 +77,7 @@ const Sound = ({ name, path, img, sound }: IRouteData) => {
 
         /* Audio AutoPlay */
         if (!isPlaying) {
-            console.log(isPlaying);
             audioRef.current?.play();
-        } else {
-            console.log(isPlaying);
         }
 
         /* useEffect cleanup
@@ -103,7 +99,6 @@ const Sound = ({ name, path, img, sound }: IRouteData) => {
         let { currentTime } = e.currentTarget;
 
         const replayTime = duration - 3;
-        console.log(duration, currentTime);
         if (currentTime >= replayTime) {
             if (audioRef.current) audioRef.current.currentTime = 2;
         }
