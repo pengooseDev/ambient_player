@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Sound from "./components/Sound";
 import routeData from "./routeData";
 
 const App = () => {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
             <Nav />
             <Routes>
                 {routeData.map(({ name, path, img, sound }, i) => {
@@ -25,7 +25,7 @@ const App = () => {
                     );
                 })}
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 };
 
