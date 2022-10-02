@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.js": "/ambient_player/static/js/main.a7f2c944.js",
+    "main.js": "/ambient_player/static/js/main.a3babf0f.js",
+    "static/media/Symphony.mp3": "/ambient_player/static/media/Symphony.b22c25ae60983cdef4dd.mp3",
     "static/media/L'atelier of the Memory.mp3": "/ambient_player/static/media/L'atelier of the Memory.4b0f3f7ac572c0a3d8e4.mp3",
     "static/media/Library1.mp3": "/ambient_player/static/media/Library1.4fb2ff7de515bea0520a.mp3",
     "static/media/01.webp": "/ambient_player/static/media/01.24982a14d77a306fe162.webp",
     "static/media/teleVisor.webp": "/ambient_player/static/media/teleVisor.b5725e4ca37950edefe9.webp",
     "static/media/18.webp": "/ambient_player/static/media/18.d4e5716568b468515147.webp",
     "index.html": "/ambient_player/index.html",
-    "main.a7f2c944.js.map": "/ambient_player/static/js/main.a7f2c944.js.map"
+    "main.a3babf0f.js.map": "/ambient_player/static/js/main.a3babf0f.js.map"
   },
   "entrypoints": [
-    "static/js/main.a7f2c944.js"
+    "static/js/main.a3babf0f.js"
   ]
 }
