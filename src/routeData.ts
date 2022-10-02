@@ -1,11 +1,13 @@
 /* RouteIMG */
-import lib1IMG from "./assets/AmbientImg/Library1/01.webp";
+import lib1IMG from "./assets/AmbientImg/Library1/18.webp";
 import televisorIMG from "./assets/AmbientImg/TeleVisor/teleVisor.webp";
 import Latelier1IMG from "./assets/AmbientImg/L'atelier of the Memory/01.webp";
 import Orchestration1IMG from "./assets/AmbientImg/Orchestration/01.webp";
 
 /* Sound SFX */
 import LibSFX from "./assets/AmbientSound/Library1.mp3";
+//import LibSFX from "./assets/AmbientSound/latelierDummy.mp3";
+
 import LatelierSFX from "./assets/AmbientSound/L'atelier of the Memory.mp3";
 
 export interface IRouteData {

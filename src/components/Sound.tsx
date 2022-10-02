@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { navToggleAtom } from "../atom";
-import useSound from "use-sound";
+import { navToggleAtom, playerAtom } from "../atom";
 import styled from "styled-components";
 import { IRouteData } from "../routeData";
 import { FastAverageColor } from "fast-average-color";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const Wrapper = styled.div<{ imgUrl: string }>`
     display: flex;
@@ -44,54 +43,69 @@ const PlayBtn = styled.div<{ avgColor: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    //background: rgba(0, 0, 0, 0.65);
     transition: ease-in-out 0.15s;
     color: ${(props) => props.avgColor};
-
     :hover {
         cursor: pointer;
-        //background: rgba(0, 0, 0, 1);
     }
 `;
 
-const Audio = (sound: string) => {
-    const audio = new Audio(sound);
-    return <></>;
-};
-
 const Sound = ({ name, path, img, sound }: IRouteData) => {
     const [isVisible, setVisible] = useRecoilState(navToggleAtom);
-    const [isPlaying, setIsPlaying] = useState<boolean>(true);
+    const [isPlaying, setIsPlaying] = useRecoilState<boolean>(playerAtom);
     const [avgColor, setAvgColor] = useState<string>("");
-
-    console.log(sound);
 
     const soundHandler = () => {
         setIsPlaying((prev) => !prev);
         console.log("isplaying?", isPlaying);
         if (isPlaying) {
-            audio.pause();
-            audio.play();
+            audio?.play();
         } else {
-            //기존에 재생되던 애 멈춰야함.
-            audio.pause();
+            audio?.pause();
         }
     };
 
-    useEffect(() => {
-        const audio = new Audio(sound);
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const audio = audioRef.current;
+    // new Audio Promise 때문에 duration 발생하는데 어떻게함?
 
+    useEffect(() => {
         /* Generate Color */
         const fac = new FastAverageColor();
         fac.getColorAsync(img, { algorithm: "sqrt" }).then((i) => {
             setAvgColor((prev) => i.hex);
         });
+
+        /* Audio AutoPlay */
+        if (!isPlaying) {
+            console.log(isPlaying);
+            audioRef.current?.play();
+        } else {
+            console.log(isPlaying);
+        }
+
+        /* useEffect cleanup
+            useEffect 내부에서 ArrowFunc를 return할 경우, 
+            useEffect가 걸려있는 Component가 언마운트 될 때 실행됨.*/
+        //return () => {};
     }, [path]);
 
     const navCloseHandler = () => {
         if (isVisible) {
             setVisible((prev) => !prev);
+        }
+    };
+
+    const audioEndHandler = (
+        e: React.SyntheticEvent<HTMLAudioElement, Event>
+    ) => {
+        const { duration } = e.currentTarget;
+        let { currentTime } = e.currentTarget;
+
+        const replayTime = duration - 3;
+        console.log(duration, currentTime);
+        if (currentTime >= replayTime) {
+            if (audioRef.current) audioRef.current.currentTime = 2;
         }
     };
 
@@ -106,6 +120,7 @@ const Sound = ({ name, path, img, sound }: IRouteData) => {
                     {isPlaying ? <Play /> : <Pause />}
                 </PlayBtn>
             </ImgContainer>
+            <audio ref={audioRef} src={sound} onTimeUpdate={audioEndHandler} />
         </Wrapper>
     );
 };

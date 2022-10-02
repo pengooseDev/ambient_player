@@ -3,7 +3,7 @@ import styled from "styled-components";
 import routeData from "../routeData";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { navToggleAtom } from "../atom";
+import { navToggleAtom, playerAtom } from "../atom";
 
 interface ILinkProps {
     img: string;
